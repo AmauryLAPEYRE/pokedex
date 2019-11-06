@@ -57,9 +57,9 @@ body {
     height: 100px;
     display: flex;
     align-items: center;
-    width: 100vw;
     max-width: 450px;
     margin: auto;
+    justify-content: space-between;
 }
 .title h1{
     font-size: 1.5em;
@@ -75,9 +75,12 @@ body {
     height: 250px;
     position: fixed;
     width: 250px;
-    top: -50px;
-    right: -50px;
+    top: -82px;
+    right: -85px;
     filter: opacity(.15) drop-shadow(0 0 0 grey);
+}
+.hamburger-menu {
+    padding-right: 35px;
 }
 main .pokemon-card {
     width: 40%;
