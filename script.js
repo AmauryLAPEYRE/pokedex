@@ -1,11 +1,23 @@
+/************/
+/** HELPERS */
+/************/
+function createHTML(elements, container) {
+
+    elements.map(el => {
+        container.appendChild(el);
+    })
+
+    return container;
+}
+
+/**************/
+/** VARIABLES */
+/**************/
 const baseRequest = 'https://pokeapi.co/api/v2/pokemon/';
 
-
-/*****************/
-/** API REQUESTS */
-/*****************/
-
-
+/*************/
+/** REQUESTS */
+/*************/
 function searchPokemon() {
     let search = document.querySelector("#search").value;
     fetch(baseRequest + search)
@@ -108,72 +120,64 @@ function createPokeCard(data) {
 }
 
 function modalDetails(datas) {
-    console.log(datas);
+
+    // Création des éléments
     let modalDiv = document.createElement('div');
     let modalHead = document.createElement('div');
     let pokeModalHead = document.createElement('div');
     let pokeModalHeadLeft = document.createElement('div');
-
     let pokeId = document.createElement('span');
     let pokeName = document.createElement('h2');
     let pokeImg = document.createElement('img');
     let pokeTypes = document.createElement('ul');
     let leaveModal = document.createElement('span');
     let addTeam = document.createElement('span');
-    /*const elements = [
-        leaveModal,
-        addTeam,
-        pokeName,
-        pokeImg,
-        pokeTypes
-    
-    ]*/
-       
+
+    // Création des éléments types
+    datas.types.map( (i) => {
+        let typeItem =  document.createElement('li');
+        typeItem.innerHTML = i.type.name;
+        pokeTypes.appendChild(typeItem);
+    })
+   
+    // Ajout des classes aux éléments
     modalHead.classList.add('modal-head');
     pokeModalHead.classList.add('poke-head');
     leaveModal.classList.add('left-arrow');
     addTeam.classList.add('poke-add');
+    modalDiv.classList.add('modal-container');
     
-    datas.types.map( (i) => {
-
-        let typeItem =  document.createElement('li');
-        typeItem.innerHTML = i.type.name;
-
-        pokeTypes.appendChild(typeItem);
-    })
-
+    // Set le contenu des éléments
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', datas.sprites.front_default);
 
+    // Création du HTML
+    createHTML([
+        leaveModal, 
+        addTeam     
+    ],modalHead)
 
-    modalHead.appendChild(leaveModal);
-    modalHead.appendChild(addTeam);
+    createHTML([
+        pokeName, 
+        pokeTypes
+    ], pokeModalHeadLeft)
 
-    pokeModalHeadLeft.appendChild(pokeName);
-    pokeModalHeadLeft.appendChild(pokeTypes);
-    pokeModalHead.appendChild(pokeModalHeadLeft);
-    pokeModalHead.appendChild(pokeId);
+    createHTML([
+        pokeModalHeadLeft,
+        pokeId
+    ], pokeModalHead)
 
-    modalDiv.appendChild(modalHead);
-    modalDiv.appendChild(pokeModalHead);
-    modalDiv.appendChild(pokeImg);
+    createHTML([
+        modalHead,
+        pokeModalHead,
+        pokeImg
+    ], modalDiv)
 
-
-    /*elements.map(el => {
-        console.log(el);
-        modalDiv.appendChild(el);
-    }) */
-    modalDiv.classList.add('modal-container');
+   
 
     document.querySelector('main').appendChild(modalDiv);
     
 }
-
-/** appendChild, object in parameter */
-function createHTML() {
-
-}
-
 
 getAllPokemon();
