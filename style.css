@@ -150,6 +150,7 @@ main div li::first-letter {
     bottom: 0;
     right: 0;
 }
+<<<<<<< HEAD
 .modal-container {
     width: 100%;
     height: 100%;
@@ -169,3 +170,5 @@ main div li::first-letter {
          top: 0; 
     }
   }
+=======
+>>>>>>> 613dadb17e6f984e3f4c3cb6ddfd52fbb0e47987
