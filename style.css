@@ -51,6 +51,7 @@ main {
 }
 body {
     font-family: 'Roboto', sans-serif;
+    overflow: -webkit-paged-y;
 }
 .title {
     height: 100px;
@@ -71,7 +72,7 @@ body {
     background-repeat: no-repeat;
     display: block;
     height: 250px;
-    position: absolute;
+    position: fixed;
     width: 250px;
     top: -50px;
     right: -50px;
