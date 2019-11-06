@@ -159,14 +159,14 @@ main div li::first-letter {
     width: -webkit-fill-available;
     height: 100%;
     background: #d4d4d4;
-    position: absolute;
+    position: fixed;
     z-index: 20;
     animation-name: go_to_top;
     animation-duration: 0.5s;
-    padding: 30px;
     font-family: 'Roboto', sans-serif;
 }
 .modal-head {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
 }
@@ -195,6 +195,7 @@ main div li::first-letter {
     text-transform: uppercase;
 }
 .poke-head {
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     color: white;
@@ -215,8 +216,44 @@ main div li::first-letter {
 .modal-container img {
     display: block;
     margin: auto;
+    bottom: -30px;
+    position: relative;
 }
-
+.modal-details {
+    height: 85%;
+    width: 100%;
+    background: white;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+}
+.modal-menu {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid lightgrey;
+    width: 85%;
+    margin: auto;
+}
+.menu-item {
+    display: none;
+}
+.item-active {
+    display: block;
+    height: 100%;
+}
+.tab {
+    text-decoration: none;
+}
+.modal-menu .active{
+    border-bottom: 3px solid #3f48a7;
+    height: 40px;
+    color: black;
+    margin-top: 30px;
+}
+.modal-menu a {
+    color: lightgrey;
+}
 @keyframes go_to_top {
     0% {
          top: 100vh;
