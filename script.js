@@ -71,6 +71,19 @@ function getPokemonDetails(name) {
         });
 }
 
+function getTeamList(name) {
+    fetch(baseRequest + name)
+        .then( (response) => {
+            response.json()
+                .then( (data) => {
+                    HTMLTeamList(data);
+                })
+                .catch(err => {
+                    console.log(err, 'Ce pokemon n\'existe pas');
+                });
+        });
+}
+
 
 /**********************/
 /** ELEMENTS CREATION */
@@ -87,9 +100,11 @@ function createListTypes(data, name) {
         list,
         divImage
     ], divPokemon);
+
     createHTML([
         pokemonImage
     ], divImage);
+
     divPokemon.appendChild(list);
     divPokemon.appendChild(divImage);
     divImage.appendChild(pokemonImage);
@@ -118,9 +133,7 @@ function createPokeCard(data) {
         getPokemonByName(items.name);
 
         divPokemon.addEventListener('click', () => {
-        
             getPokemonDetails(items.name);
-            
         })
     })
 }
@@ -198,16 +211,6 @@ function modalDetails(datas) {
     });
     addTeam.addEventListener('click', () => {
         storeTeam(datas.species.name);
-       /* let team = localStorage.getItem('team');
-
-        if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(datas.species.name) === -1) {
-            if(team.length <= 0) {
-                localStorage.setItem('team', datas.species.name);
-            } else {
-                team = team + `,${datas.species.name}`;
-                localStorage.setItem('team', team);
-            }
-        }*/
     });
 
     // Insertion du HTML
@@ -254,13 +257,70 @@ function storeTeam(pokeName) {
     if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(pokeName) === -1) {
         if(team.length <= 0) {
             localStorage.setItem('team', pokeName);
+            getTeamList(pokeName);
         } else {
-            team = team + `,${datas.species.name}`;
+            team = team + `,${pokeName}`;
             localStorage.setItem('team', team);
+            getTeamList(pokeName);
         }
     }
+
+    let currentTeam = localStorage.getItem('team');
+    
+}
+
+function openNav() {
+    console.log(document.querySelector('.team-list').classList);
+    
+    if(document.querySelector('.team-list').classList.contains('activ') ) {
+        document.querySelector('.team-list').classList.remove('activ');
+    } else {
+        document.querySelector('.team-list').classList.add('activ');
+        
+    }
+    
+   /* let currentTeam = localStorage.getItem('team');
+    
+
+    currentTeam.split(',').map(teamMember => {
+        getTeamList(teamMember);
+    })*/
+}
+
+function HTMLTeamList(data) {
+    
+    let tmcard = document.createElement('div');
+    let tmName = document.createElement('h2');
+    let tmImg = document.createElement('img');
+
+    tmName.innerHTML = data.name;
+    tmImg.setAttribute('src', data.sprites.front_default);
+
+    createHTML([
+        tmName,
+        tmImg
+    ], tmcard)
+
+    createHTML([
+        tmcard
+    ], document.querySelector('.team-list'))
+
+}
+
+function initApp() {
+    getAllPokemon();
+    localStorage.setItem('team', []);
+
+    document.querySelector('.title').addEventListener('click', () => {
+       /* if() {
+
+        }*/
+        openNav();
+    });
 }
 
 
-getAllPokemon();
-localStorage.setItem('team', []);
+
+initApp();
+
+
