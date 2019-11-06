@@ -51,7 +51,8 @@ function getPokemonDetails(name) {
         .then( (response) => {
             response.json()
                 .then( (data) => {
-                    debugger;
+                  
+                    modalDetails(data);
                 })
                 .catch(err => {
                     console.log('Ce pokemon n\'existe pas');
@@ -98,20 +99,65 @@ function createPokeCard(data) {
 
         getPokemonByName(items.name);
 
-        divPokemon.addEventListener('click', (e) => {
-
-            modalDetails();
+        divPokemon.addEventListener('click', () => {
+        
+            getPokemonDetails(items.name);
+            
         })
     })
 }
 
-function modalDetails() {
-    console.log(e);
+function modalDetails(datas) {
+    
     let modalDiv = document.createElement('div');
+    let pokeName = document.createElement('h2');
+    let pokeImg = document.createElement('img');
+    let pokeTypes = document.createElement('ul');
+    let leaveModal = document.createElement('span');
+    let addTeam = document.createElement('span');
+    const elements = [
+        leaveModal,
+        addTeam,
+        pokeName,
+        pokeImg,
+        pokeTypes
+    
+    ]
+       
+    
+    leaveModal.classList.add('left-arrow');
+    addTeam.classList.add('poke-add');
+    
+    datas.types.map( (i) => {
 
+        let typeItem =  document.createElement('li');
+        typeItem.innerHTML = i.type.name;
+
+        pokeTypes.appendChild(typeItem);
+    })
+
+    pokeName.innerHTML = datas.species.name;
+    pokeImg.setAttribute('src', datas.sprites.front_default);
+
+    /*modalDiv.appendChild(leaveModal);
+    modalDiv.appendChild(addTeam);
+    modalDiv.appendChild(pokeName);
+    modalDiv.appendChild(pokeImg);
+    modalDiv.appendChild(pokeTypes); */
+
+    elements.map(el => {
+        console.log(el);
+        modalDiv.appendChild(el);
+    })
     modalDiv.classList.add('modal-container');
 
     document.querySelector('main').appendChild(modalDiv);
+    
+}
+
+/** appendChild, object in parameter */
+function createHTML() {
+
 }
 
 
