@@ -90,6 +90,9 @@ function createListTypes(data, name) {
     createHTML([
         pokemonImage
     ], divImage);
+    divPokemon.appendChild(list);
+    divPokemon.appendChild(divImage);
+    divImage.appendChild(pokemonImage);
 
     data.types.map(i => {
         let types = document.createElement('li');
@@ -121,12 +124,34 @@ function createPokeCard(data) {
         })
     })
 }
+function switchTab() {
+    let tabs = document.querySelectorAll('.tab');
+    tabs.forEach(element => {
+        element.addEventListener('click', (event) => {
+            let panel = document.querySelector(element.getAttribute('href'));
+            tabs.forEach(element => {
+                element.classList.remove('active');
+            })
+            document.querySelectorAll('.menu-item').forEach(element => {
+                element.classList.remove('item-active');
+            })
+            panel.classList.add('item-active');
+            element.classList.add('active');  
+        })
+    });
+1}
 
 function modalDetails(datas) {
 
     // Création des éléments
     let modalDiv = document.createElement('div');
+    let modalDetails = document.createElement('div');
     let modalHead = document.createElement('div');
+    let modalMenu = document.createElement('div');
+    let aboutMenu = document.createElement('a');
+    let evolutionMenu = document.createElement('a');
+    let modalAbout = document.createElement('div');
+    let modalEvolution = document.createElement('div');
     let pokeModalHead = document.createElement('div');
     let pokeModalHeadLeft = document.createElement('div');
     let pokeId = document.createElement('span');
@@ -145,12 +170,24 @@ function modalDetails(datas) {
    
     // Ajout des classes aux éléments
     modalHead.classList.add('modal-head');
+    aboutMenu.classList.add('tab', 'active')
+    evolutionMenu.classList.add('tab');
+    modalAbout.classList.add('menu-item', 'item-active')
+    modalEvolution.classList.add('menu-item')
+    modalMenu.classList.add('modal-menu')
+    modalDetails.classList.add('modal-details');
     pokeModalHead.classList.add('poke-head');
     leaveModal.classList.add('left-arrow');
     addTeam.classList.add('poke-add');
     modalDiv.classList.add('modal-container');
     
     // Set le contenu des éléments
+    aboutMenu.innerHTML = 'About';
+    aboutMenu.href = "#item-1";
+    evolutionMenu.innerHTML = 'Evolution';
+    evolutionMenu.href = '#item-2';
+    modalAbout.id = 'item-1';
+    modalEvolution.id = 'item-2';
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', datas.sprites.front_default);
@@ -191,11 +228,23 @@ function modalDetails(datas) {
     createHTML([
         modalHead,
         pokeModalHead,
-        pokeImg
+        pokeImg,
+        modalDetails
     ], modalDiv)
 
-    document.querySelector('body').insertBefore(modalDiv, document.querySelector('header'));
+    createHTML([
+        modalMenu,
+        modalAbout,
+        modalEvolution
+    ], modalDetails)
     
+    createHTML([
+        aboutMenu,
+        evolutionMenu
+    ], modalMenu)
+
+    document.querySelector('body').insertBefore(modalDiv, document.querySelector('header'));
+    switchTab();
 }
 
 
