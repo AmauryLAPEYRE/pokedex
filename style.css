@@ -51,6 +51,7 @@ main {
 }
 body {
     font-family: 'Roboto', sans-serif;
+    overflow: -webkit-paged-y;
 }
 .title {
     height: 100px;
