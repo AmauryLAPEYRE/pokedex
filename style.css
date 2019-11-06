@@ -64,6 +64,7 @@ body {
 .title h1{
     font-size: 1.5em;
     font-weight: bold;
+    padding-left: 4px;
 }
 .title::after{
     content: "";
@@ -136,11 +137,12 @@ main div li {
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.25);
     text-align: center;
-    height: 22px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 10px;
+    margin-right: 5px;
 }
 main div li::first-letter {
     text-transform: uppercase;
@@ -151,15 +153,68 @@ main div li::first-letter {
     bottom: 0;
     right: 0;
 }
+/* Modal */
+
 .modal-container {
-    width: 100%;
+    width: -webkit-fill-available;
     height: 100%;
     background: #d4d4d4;
     position: absolute;
     z-index: 20;
     animation-name: go_to_top;
     animation-duration: 0.5s;
-
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+}
+.modal-head {
+    display: flex;
+    justify-content: space-between;
+}
+.left-arrow {
+    background-image: url(public/left-arrow.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    width: 23px;
+    height: 45px;
+}
+.poke-add {
+    background-image: url(public/empty_pokeball.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    width: 25px;
+    height: 45px;
+}
+.modal-container h2 {
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+}
+.modal-container h2::first-letter {
+    text-transform: uppercase;
+}
+.poke-head {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-weight: bold;
+}
+.poke-head div ul {
+    display: flex;
+    padding-top: 15px;
+    flex-direction: row;
+}
+.poke-head div ul li {
+    color: white;
+}
+.poke-head span {
+    display: flex;
+    align-items: center;
+}
+.modal-container img {
+    display: block;
+    margin: auto;
 }
 
 @keyframes go_to_top {
