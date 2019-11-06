@@ -53,7 +53,7 @@ function getPokemonByName(name) {
                     createListTypes(data, name);
                 })
                 .catch(err => {
-                    console.log('Ce pokemon n\'existe pas');
+                    console.log(err, 'Ce pokemon n\'existe pas');
                 });
         });
 }
@@ -63,11 +63,10 @@ function getPokemonDetails(name) {
         .then( (response) => {
             response.json()
                 .then( (data) => {
-                  
                     modalDetails(data);
                 })
                 .catch(err => {
-                    console.log('Ce pokemon n\'existe pas');
+                    console.log(err, 'Ce pokemon n\'existe pas');
                 });
         });
 }
@@ -83,12 +82,16 @@ function createListTypes(data, name) {
     let divImage = document.createElement('div');
 
     pokemonImage.src = data.sprites.front_default;
-    divPokemon.appendChild(list);
-    divPokemon.appendChild(divImage);
-    divImage.appendChild(pokemonImage);
+
+    createHTML([
+        list,
+        divImage
+    ], divPokemon);
+    createHTML([
+        pokemonImage
+    ], divImage);
 
     data.types.map(i => {
-        
         let types = document.createElement('li');
         list.parentElement.classList.add(i.type.name);
         list.appendChild(types);
@@ -152,7 +155,24 @@ function modalDetails(datas) {
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', datas.sprites.front_default);
 
-    // Création du HTML
+    // Gestion des events
+    leaveModal.addEventListener('click', () => {
+        modalDiv.remove();
+    });
+    addTeam.addEventListener('click', () => {
+        let team = localStorage.getItem('team');
+
+        if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(datas.species.name) === -1) {
+            if(team.length <= 0) {
+                localStorage.setItem('team', datas.species.name);
+            } else {
+                team = team + `,${datas.species.name}`;
+                localStorage.setItem('team', team);
+            }
+        }
+    });
+
+    // Insertion du HTML
     createHTML([
         leaveModal, 
         addTeam     
@@ -174,10 +194,10 @@ function modalDetails(datas) {
         pokeImg
     ], modalDiv)
 
-   
-
-    document.querySelector('main').appendChild(modalDiv);
+    document.querySelector('body').insertBefore(modalDiv, document.querySelector('header'));
     
 }
 
+
 getAllPokemon();
+localStorage.setItem('team', []);
