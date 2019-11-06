@@ -197,7 +197,8 @@ function modalDetails(datas) {
         modalDiv.remove();
     });
     addTeam.addEventListener('click', () => {
-        let team = localStorage.getItem('team');
+        storeTeam(datas.species.name);
+       /* let team = localStorage.getItem('team');
 
         if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(datas.species.name) === -1) {
             if(team.length <= 0) {
@@ -206,7 +207,7 @@ function modalDetails(datas) {
                 team = team + `,${datas.species.name}`;
                 localStorage.setItem('team', team);
             }
-        }
+        }*/
     });
 
     // Insertion du HTML
@@ -245,6 +246,19 @@ function modalDetails(datas) {
 
     document.querySelector('body').insertBefore(modalDiv, document.querySelector('header'));
     switchTab();
+}
+
+function storeTeam(pokeName) {
+    let team = localStorage.getItem('team');
+
+    if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(pokeName) === -1) {
+        if(team.length <= 0) {
+            localStorage.setItem('team', pokeName);
+        } else {
+            team = team + `,${datas.species.name}`;
+            localStorage.setItem('team', team);
+        }
+    }
 }
 
 
