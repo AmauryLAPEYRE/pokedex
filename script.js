@@ -108,23 +108,29 @@ function createPokeCard(data) {
 }
 
 function modalDetails(datas) {
-    
+    console.log(datas);
     let modalDiv = document.createElement('div');
+    let modalHead = document.createElement('div');
+    let pokeModalHead = document.createElement('div');
+    let pokeModalHeadLeft = document.createElement('div');
+
+    let pokeId = document.createElement('span');
     let pokeName = document.createElement('h2');
     let pokeImg = document.createElement('img');
     let pokeTypes = document.createElement('ul');
     let leaveModal = document.createElement('span');
     let addTeam = document.createElement('span');
-    const elements = [
+    /*const elements = [
         leaveModal,
         addTeam,
         pokeName,
         pokeImg,
         pokeTypes
     
-    ]
+    ]*/
        
-    
+    modalHead.classList.add('modal-head');
+    pokeModalHead.classList.add('poke-head');
     leaveModal.classList.add('left-arrow');
     addTeam.classList.add('poke-add');
     
@@ -137,18 +143,27 @@ function modalDetails(datas) {
     })
 
     pokeName.innerHTML = datas.species.name;
+    pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', datas.sprites.front_default);
 
-    /*modalDiv.appendChild(leaveModal);
-    modalDiv.appendChild(addTeam);
-    modalDiv.appendChild(pokeName);
-    modalDiv.appendChild(pokeImg);
-    modalDiv.appendChild(pokeTypes); */
 
-    elements.map(el => {
+    modalHead.appendChild(leaveModal);
+    modalHead.appendChild(addTeam);
+
+    pokeModalHeadLeft.appendChild(pokeName);
+    pokeModalHeadLeft.appendChild(pokeTypes);
+    pokeModalHead.appendChild(pokeModalHeadLeft);
+    pokeModalHead.appendChild(pokeId);
+
+    modalDiv.appendChild(modalHead);
+    modalDiv.appendChild(pokeModalHead);
+    modalDiv.appendChild(pokeImg);
+
+
+    /*elements.map(el => {
         console.log(el);
         modalDiv.appendChild(el);
-    })
+    }) */
     modalDiv.classList.add('modal-container');
 
     document.querySelector('main').appendChild(modalDiv);
