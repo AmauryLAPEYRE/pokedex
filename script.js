@@ -123,17 +123,20 @@ function createPokeCard(data) {
   
         let divPokemon = document.createElement('div');
         let name = document.createElement('h2');
-
+        let pokeInTeam = document.createElement('span');
+        
         divPokemon.classList.add(items.name, "pokemon-card");
+        pokeInTeam.classList.add('pokeball');
         name.innerHTML = items.name;
+
+        createHTML([
+            pokeInTeam,
+            name
+        ], divPokemon)
 
         createHTML([
             divPokemon
         ], document.querySelector('main'))
-
-        createHTML([
-            name
-        ], divPokemon)
 
         getPokemonByName(items.name);
 
@@ -141,9 +144,9 @@ function createPokeCard(data) {
             getPokemonDetails(items.name);
         })
 
-        
     })
 }
+
 function switchTab() {
     let tabs = document.querySelectorAll('.tab');
     tabs.forEach(element => {
@@ -159,15 +162,10 @@ function switchTab() {
             element.classList.add('active');  
         })
     });
-1}
+}
 
 function modalDetails(datas) {
-    /**
-     * taille: datas.height
-     * poid: datas.weight
-     * abilities: datas.abilities -> map -> ability.name
-     */
-    console.log(datas);
+    
     // Création des éléments
     let modalDiv = document.createElement('div');
     let modalDetails = document.createElement('div');
@@ -221,6 +219,28 @@ function modalDetails(datas) {
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', `https://pokeres.bastionbot.org/images/pokemon/${datas.id}.png`);
+    /**
+     * modalAbout - modalEvolution
+     * taille: datas.height
+     * poid: datas.weight
+     * abilities: datas.abilities -> map -> ability.name
+     * 
+     * 
+     * about => abilities | autre menu
+     * 
+     * Base Stats => stats->map e.base_stat -> stat.name
+     * 
+     * appearance => datas.sprites  faire tableau de correspondance, vérifier si null, afficher img du lien 
+     */
+    console.log(datas);
+    modalAbout.innerHTML = `
+    <ul class="about-list">
+        <li>Height: ${datas.height}</li>
+        <li>Weight: ${datas.weight}</li>
+        <li>Abilities: ${datas.abilities.map(e => e.ability.name)} </li>
+    </ul>
+    `;
+    
 
     // Gestion des events
     leaveModal.addEventListener('click', () => {
@@ -281,7 +301,7 @@ function modalDetails(datas) {
 function storeTeam(pokeName) {
     let team = localStorage.getItem('team');
 
-    if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(pokeName) === -1) {
+    if (team.split(',').length <= 5 && localStorage.getItem('team').indexOf(pokeName) === - 1) {
         if(team.length <= 0) {
             localStorage.setItem('team', pokeName);
             getTeamList(pokeName);
@@ -290,6 +310,8 @@ function storeTeam(pokeName) {
             localStorage.setItem('team', team);
             getTeamList(pokeName);
         }
+
+        document.querySelector(`.pokemon-card.${pokeName} span.pokeball`).classList.add('in-team');
     }
 }
 
@@ -298,7 +320,7 @@ function unstoreTeam(pokeName) {
     let pokeInTeam = document.querySelector(`.pokemon-container .${pokeName}`);
 
     currentTeam.splice(currentTeam.indexOf(pokeName), 1);
-
+    document.querySelector(`.pokemon-card.${pokeName} span.pokeball`).classList.remove('in-team');
     pokeInTeam.remove();
     localStorage.setItem('team', currentTeam);
 
