@@ -105,6 +105,23 @@ body {
 .stat {
     padding-left: 80px;
     text-align: end;
+    text-transform: capitalize;
+    padding-right: 10px;
+}
+.progress-bar { 
+  width: 150px; 
+  height: 3px;
+  background-color: lightgrey;
+  text-align: center; 
+  line-height: 32px; 
+  color: black; 
+}
+.action {
+    height: 3px;
+    background: #fc6c6d;
+}
+.action.green {
+    background: #49d0b0;
 }
 main .pokemon-card, .pokemon-container .pokemon-card {
     width: 40%;

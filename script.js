@@ -258,6 +258,24 @@ function modalDetails(datas) {
         let itemList = document.createElement('li');
         itemList.innerHTML = `<span>${e.stat.name}</span> <p class="stat">${e.base_stat}</p>`;
     
+        let progressBar = document.createElement('div');
+        let action =document.createElement('div');
+        progressBar.classList.add('progress-bar');
+        action.classList.add('action');
+        let percentToPixel = 150 * e.base_stat / 100;
+        action.style.width = `${percentToPixel}px`;
+        if (e.base_stat > 50 ) {
+            action.classList.add('green');
+        }
+
+        createHTML([
+            action
+        ], progressBar)
+
+        createHTML([
+            progressBar
+        ], itemList)
+
         createHTML([
             itemList
         ], pokeStats)
