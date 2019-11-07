@@ -107,7 +107,11 @@ body {
     text-align: end;
     text-transform: capitalize;
     padding-right: 10px;
+}
+.percent {
     width: 30px;
+    padding-left: 60px;
+    padding-right: 10px;
 }
 .progress-bar { 
   width: 150px; 
