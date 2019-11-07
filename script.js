@@ -36,7 +36,6 @@ function searchPokemon() {
 }
 
 function getAllPokemon(limit, offset) {
-    console.log(`${baseRequest}?limit=${limit}&offset=${offset}`);
     fetch(`${baseRequest}?limit=${limit}&offset=${offset}`)
         .then( (response) => {
             response.json()
@@ -186,6 +185,10 @@ function modalDetails(datas) {
     let leaveModal = document.createElement('span');
     let addTeam = document.createElement('span');
     let teamStored = localStorage.getItem('team').length > 0 ? localStorage.getItem('team').split(',') : null;
+    let pokeAbout = document.createElement('ul');
+    let pokeHeight = document.createElement('li');
+    let pokeWeight = document.createElement('li');
+    let pokeAbilities = document.createElement('li');
    
     // Création des éléments types
     datas.types.map( (i) => {
@@ -209,6 +212,7 @@ function modalDetails(datas) {
     addTeam.classList.add('poke-add');
     modalDiv.classList.add('modal-container');
     datas.types.map(e => {modalDiv.classList.add(e.type.name)})
+    pokeAbout.classList.add('about-list');
     if(teamStored !== null && teamStored.indexOf(datas.species.name) !== -1) {
         addTeam.classList.add('in-team')
     }
@@ -226,20 +230,11 @@ function modalDetails(datas) {
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', `https://pokeres.bastionbot.org/images/pokemon/${datas.id}.png`);
-  
-    console.log(datas);
-    /** PAGE ABOUT **/
-    let pokeAbout = document.createElement('ul');
-    let pokeHeight = document.createElement('li');
-    let pokeWeight = document.createElement('li');
-    let pokeAbilities = document.createElement('li');
-
-    pokeAbout.classList.add('about-list');
-
     pokeHeight.innerHTML = `<span>Height</span> <p class="stat">${datas.height}</p>`;
     pokeWeight.innerHTML = `<span>Weight</span> <p class="stat">${datas.weight}</p>`;
     pokeAbilities.innerHTML = `<span>Abilities</span> <p class="stat">${datas.abilities.map(a => a.ability.name)}</p>`;
    
+     /** PAGE ABOUT **/
     createHTML([
         pokeHeight,
         pokeWeight,
@@ -288,7 +283,6 @@ function modalDetails(datas) {
     /** END PAGE BASE STATS **/
 
     /** PAGE BASE APPAREANCE **/
-
     let corrArray = [
         'back_default',
         'back_female',
@@ -417,6 +411,9 @@ function HTMLTeamList(data) {
     let tmName = document.createElement('h2');
     let tmImg = document.createElement('img');
 
+    tmCard.addEventListener('click', () => {
+        modalDetails(data);
+    });
     data.types.map(e => tmCard.classList.add(e.type.name));
     tmCard.classList.add('pokemon-card');
     tmCard.classList.add(data.species.name);
