@@ -79,8 +79,11 @@ body {
     right: -85px;
     filter: opacity(.15) drop-shadow(0 0 0 grey);
 }
+.pokemon-card:active {
+    transform: scale(1.02);
+}
 .hamburger-menu {
-    padding-right: 7px;
+    padding-right: 22px;
     position: absolute;
     z-index: 500;
     right: 0;
@@ -366,6 +369,7 @@ main div li::first-letter {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    width: 50px;
 }
 .hamRotate.active {
     transform: rotate(45deg);
