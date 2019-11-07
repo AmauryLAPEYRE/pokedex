@@ -162,7 +162,6 @@ main div li::first-letter {
 .modal-container {
     width: -webkit-fill-available;
     height: 100%;
-    /*background: #d4d4d4;*/
     position: fixed;
     z-index: 20;
     animation-name: go_to_top;
@@ -190,9 +189,6 @@ main div li::first-letter {
     width: 25px;
     height: 45px;
 }
-.poke-add.in-team {
-    background-image: url(public/full_pokeball.png);
-}
 .modal-container h2 {
     font-size: 2em;
     font-weight: bold;
@@ -215,6 +211,16 @@ main div li::first-letter {
 }
 .poke-head div ul li {
     color: white;
+    width: 84px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.25);
+    text-align: center;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    margin-right: 5px;
 }
 .poke-head span {
     display: flex;
@@ -223,7 +229,7 @@ main div li::first-letter {
 .modal-container img {
     display: block;
     margin: auto;
-    bottom: -30px;
+    bottom: -35px;
     position: relative;
 }
 .modal-details {
@@ -278,9 +284,9 @@ main div li::first-letter {
     height: 90vh;
     width: 100vw;
     display: flex;
-    flex-wrap: wrap;
     width: 100vw;
     max-width: 450px;
+    flex-direction: column;
 }
 .pokemon-title {
     font-size: 1.5em;
@@ -289,11 +295,15 @@ main div li::first-letter {
     display: flex;
     align-items: center;
 }
+
+.poke-add.in-team {
+    background-image: url(public/full_pokeball.png); 
+}
 .scale-in-center.activ {
 	animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
-.test {
-    display: flex;
+.container-team {
+    display: none;
     justify-content: center;
     align-items: center;
     height: 100vh;
