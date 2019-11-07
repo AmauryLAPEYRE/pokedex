@@ -82,6 +82,20 @@ body {
 .pokemon-card:active {
     transform: scale(1.02);
 }
+.pokeball.in-team {
+    background-image: url(public/full_pokeball.png);
+    animation: wobble 1s linear 100;
+    transform-origin: 50% 100%;
+    transform-box: fill-box;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
 .hamburger-menu {
     padding-right: 22px;
     position: absolute;
@@ -97,7 +111,17 @@ main .pokemon-card, .pokemon-container .pokemon-card {
     position: relative;
     height: 95px;
 }
-
+.about-list {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 10px;
+    padding-left: 24px;
+}
+.about-list span {
+    color: lightgray;
+}
 .fire {
     background: #EE8130;
 }
@@ -333,6 +357,7 @@ main div li::first-letter {
 .pokemon-title {
     font-size: 1.5em;
     font-weight: bold;
+    margin-top: -100px;
 }
 
 .poke-add.in-team {
