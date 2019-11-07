@@ -162,7 +162,7 @@ main div li::first-letter {
 .modal-container {
     width: -webkit-fill-available;
     height: 100%;
-    background: #d4d4d4;
+    /*background: #d4d4d4;*/
     position: fixed;
     z-index: 20;
     animation-name: go_to_top;

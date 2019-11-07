@@ -123,7 +123,7 @@ function createPokeCard(data) {
   
         let divPokemon = document.createElement('div');
         let name = document.createElement('h2');
-        let imagePokemon = document.createElement('img');
+        //let imagePokemon = document.createElement('img');
 
         divPokemon.classList.add(items.name, "pokemon-card");
         name.innerHTML = items.name;
@@ -195,6 +195,7 @@ function modalDetails(datas) {
     leaveModal.classList.add('left-arrow');
     addTeam.classList.add('poke-add');
     modalDiv.classList.add('modal-container');
+    datas.types.map(e => {modalDiv.classList.add(e.type.name)})
     if(teamStored !== null && teamStored.indexOf(datas.species.name) !== -1) {
         addTeam.classList.add('in-team')
     }
@@ -278,9 +279,6 @@ function storeTeam(pokeName) {
             getTeamList(pokeName);
         }
     }
-
-    //let currentTeam = localStorage.getItem('team');
-    
 }
 
 function unstoreTeam(pokeName) {
@@ -302,22 +300,24 @@ function openNav() {
 }
 
 function HTMLTeamList(data) {
-    
-    let tmcard = document.createElement('div');
+  //  console.log(data);debugger;
+    let tmCard = document.createElement('div');
     let tmName = document.createElement('h2');
     let tmImg = document.createElement('img');
 
+    data.types.map(e => tmCard.classList.add(e.type.name));
+    tmCard.classList.add('pokemon-card');
     tmName.innerHTML = data.name;
     tmImg.setAttribute('src', data.sprites.front_default);
 
     createHTML([
         tmName,
         tmImg
-    ], tmcard)
+    ], tmCard)
 
     createHTML([
-        tmcard
-    ], document.querySelector('.team-list'))
+        tmCard
+    ], document.querySelector('.pokemon-container'))
 
 }
 
