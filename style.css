@@ -304,12 +304,15 @@ main div li::first-letter {
 }
 .container-team {
     display: none;
+}
+.active-container-team {
     justify-content: center;
     align-items: center;
     height: 100vh;
     width: 100vw;
     background: transparent;
     position: absolute;
+    display: flex;
 }
 @keyframes go_to_top {
     0% {
