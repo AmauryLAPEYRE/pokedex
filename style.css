@@ -48,6 +48,7 @@ main {
     width: 100vw;
     max-width: 450px;
     margin: auto;
+    overflow-x: hidden;
 }
 body {
     font-family: 'Roboto', sans-serif;
@@ -312,6 +313,9 @@ main div li::first-letter {
 
 .poke-add.in-team {
     background-image: url(public/full_pokeball.png); 
+    animation: wobble 1s linear 100;
+    transform-origin: 50% 100%;
+    transform-box: fill-box;
 }
 .scale-in-center.activ {
 	animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -319,7 +323,7 @@ main div li::first-letter {
 .container-team {
     display: none;
 }
-.active-container-team {
+.activ-container-team {
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -349,6 +353,14 @@ main div li::first-letter {
             transform: scale(1);
     opacity: 1;
     border-radius: 0%; 
+    }
 }
-}
+@keyframes wobble {
+    33% {
+      transform: rotate(-5deg)
+    }
+    66% {
+      transform: rotate(5deg)
+    }
+  }
   
