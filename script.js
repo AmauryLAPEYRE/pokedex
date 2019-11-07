@@ -173,8 +173,10 @@ function modalDetails(datas) {
     let modalMenu = document.createElement('div');
     let aboutMenu = document.createElement('a');
     let evolutionMenu = document.createElement('a');
+    let appearanceMenu = document.createElement('a'); // menu item appearance
     let modalAbout = document.createElement('div');
     let modalEvolution = document.createElement('div');
+    let modalAppearance = document.createElement('div'); // modal appearance zone 
     let pokeModalHead = document.createElement('div');
     let pokeModalHeadLeft = document.createElement('div');
     let pokeId = document.createElement('span');
@@ -196,6 +198,7 @@ function modalDetails(datas) {
     modalHead.classList.add('modal-head');
     aboutMenu.classList.add('tab', 'active')
     evolutionMenu.classList.add('tab');
+    appearanceMenu.classList.add('tab')
     modalAbout.classList.add('menu-item', 'item-active')
     modalEvolution.classList.add('menu-item')
     modalMenu.classList.add('modal-menu')
@@ -212,10 +215,13 @@ function modalDetails(datas) {
     // Set le contenu des éléments
     aboutMenu.innerHTML = 'About';
     aboutMenu.href = "#item-1";
-    evolutionMenu.innerHTML = 'Evolution';
+    evolutionMenu.innerHTML = 'Base Stats';
+    appearanceMenu.innerHTML = 'Appareance';
     evolutionMenu.href = '#item-2';
+    appearanceMenu.href='#item-3';
     modalAbout.id = 'item-1';
     modalEvolution.id = 'item-2';
+    modalAppearance.id = 'item-3';
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', `https://pokeres.bastionbot.org/images/pokemon/${datas.id}.png`);
@@ -233,14 +239,50 @@ function modalDetails(datas) {
      * appearance => datas.sprites  faire tableau de correspondance, vérifier si null, afficher img du lien 
      */
     console.log(datas);
-    modalAbout.innerHTML = `
-    <ul class="about-list">
-        <li>Height: ${datas.height}</li>
-        <li>Weight: ${datas.weight}</li>
-        <li>Abilities: ${datas.abilities.map(e => e.ability.name)} </li>
-    </ul>
-    `;
+    /** PAGE ABOUT **/
+    let pokeAbout = document.createElement('ul');
+    let pokeHeight = document.createElement('li');
+    let pokeWeight = document.createElement('li');
+    let pokeAbilities = document.createElement('li');
+
+    pokeAbout.classList.add('about-list');
+
+    pokeHeight.innerHTML = `<span>Height</span> ${datas.height}`;
+    pokeWeight.innerHTML = `<span>Weight</span>${datas.weight}`;
+    pokeAbilities.innerHTML = `<span>Abilities</span> ${datas.abilities.map(a => a.ability.name)}`;
+   
+    createHTML([
+        pokeHeight,
+        pokeWeight,
+        pokeAbilities
+    ], pokeAbout);
+
+    createHTML([
+        pokeAbout
+    ], modalAbout)
+    /** END PAGE ABOUT **/
+
+    /** PAGE BASE STATS **/
+    let pokeStats = document.createElement('ul');
+
+    datas.stats.map(e => {
+        let itemList = document.createElement('li');
+        itemList.innerHTML = `<span>${e.stat.name}</span> ${e.base_stat}`;
+        
+        createHTML([
+            itemList
+        ], pokeStats)
+    })
+
+    createHTML([
+        pokeStats
+    ], modalEvolution)
     
+    /** END PAGE BASE STATS **/
+
+    /** PAGE BASE APPAREANCE **/
+
+    /** END PAGE BASE APPAREANCE **/
 
     // Gestion des events
     leaveModal.addEventListener('click', () => {
@@ -284,12 +326,13 @@ function modalDetails(datas) {
     createHTML([
         modalMenu,
         modalAbout,
-        modalEvolution
+        modalEvolution,
     ], modalDetails)
     
     createHTML([
         aboutMenu,
-        evolutionMenu
+        evolutionMenu,
+        appearanceMenu
     ], modalMenu)
 
     document.querySelector('body')
