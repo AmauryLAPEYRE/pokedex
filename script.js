@@ -293,8 +293,10 @@ function openNav() {
     
     if(document.querySelector('.team-list').classList.contains('activ') ) {
         document.querySelector('.team-list').classList.remove('activ');
+        document.querySelector('.container-team').classList.remove('activ-container-team');
     } else {
         document.querySelector('.team-list').classList.add('activ');
+        document.querySelector('.container-team').classList.add('activ-container-team');
     }
  
 }
