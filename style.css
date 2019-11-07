@@ -81,6 +81,9 @@ body {
 }
 .hamburger-menu {
     padding-right: 35px;
+    position: absolute;
+    z-index: 500;
+    right: 0;
 }
 main .pokemon-card, .pokemon-container .pokemon-card {
     width: 40%;
@@ -177,7 +180,7 @@ main div li::first-letter {
     width: -webkit-fill-available;
     height: 100%;
     position: fixed;
-    z-index: 20;
+    z-index: 999;
     animation-name: go_to_top;
     animation-duration: 0.5s;
     font-family: 'Roboto', sans-serif;
@@ -306,9 +309,6 @@ main div li::first-letter {
 .pokemon-title {
     font-size: 1.5em;
     font-weight: bold;
-    height: 10vh;
-    display: flex;
-    align-items: center;
 }
 
 .poke-add.in-team {
