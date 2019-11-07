@@ -189,6 +189,9 @@ main div li::first-letter {
     width: 25px;
     height: 45px;
 }
+.poke-add.in-team {
+    background-image: url(public/full_pokeball.png);
+}
 .modal-container h2 {
     font-size: 2em;
     font-weight: bold;

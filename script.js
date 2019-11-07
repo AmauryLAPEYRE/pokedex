@@ -68,7 +68,8 @@ function getPokemonDetails(name) {
                 .catch(err => {
                     console.log(err, 'Ce pokemon n\'existe pas');
                 });
-        });
+        })
+        .catch(err => console.log(err));
 }
 
 function getTeamList(name) {
@@ -173,7 +174,8 @@ function modalDetails(datas) {
     let pokeTypes = document.createElement('ul');
     let leaveModal = document.createElement('span');
     let addTeam = document.createElement('span');
-
+    let teamStored = localStorage.getItem('team').length > 0 ? localStorage.getItem('team').split(',') : null;
+   
     // Création des éléments types
     datas.types.map( (i) => {
         let typeItem =  document.createElement('li');
@@ -193,6 +195,9 @@ function modalDetails(datas) {
     leaveModal.classList.add('left-arrow');
     addTeam.classList.add('poke-add');
     modalDiv.classList.add('modal-container');
+    if(teamStored !== null && teamStored.indexOf(datas.species.name) !== -1) {
+        addTeam.classList.add('in-team')
+    }
     
     // Set le contenu des éléments
     aboutMenu.innerHTML = 'About';
@@ -209,13 +214,22 @@ function modalDetails(datas) {
     leaveModal.addEventListener('click', () => {
         modalDiv.remove();
     });
-    addTeam.addEventListener('click', () => {
-        storeTeam(datas.species.name);
+    addTeam.addEventListener('click', (e) => {
+        
+        if(!e.target.classList.contains('in-team')) {
+            addTeam.classList.add('in-team');
+            storeTeam(datas.species.name);
+        } else {
+            addTeam.classList.remove('in-team');
+            unstoreTeam(datas.species.name);
+            console.log('==> unstore');
+        }
+        
     });
 
     // Insertion du HTML
     createHTML([
-        leaveModal, 
+        leaveModal,
         addTeam     
     ],modalHead)
 
@@ -265,26 +279,26 @@ function storeTeam(pokeName) {
         }
     }
 
-    let currentTeam = localStorage.getItem('team');
+    //let currentTeam = localStorage.getItem('team');
     
 }
 
+function unstoreTeam(pokeName) {
+    let currentTeam = localStorage.getItem('team').split(',');
+
+    currentTeam.splice(currentTeam.indexOf(pokeName), 1);
+
+    localStorage.setItem('team', currentTeam);
+}
+
 function openNav() {
-    console.log(document.querySelector('.team-list').classList);
     
     if(document.querySelector('.team-list').classList.contains('activ') ) {
         document.querySelector('.team-list').classList.remove('activ');
     } else {
         document.querySelector('.team-list').classList.add('activ');
-        
     }
-    
-   /* let currentTeam = localStorage.getItem('team');
-    
-
-    currentTeam.split(',').map(teamMember => {
-        getTeamList(teamMember);
-    })*/
+ 
 }
 
 function HTMLTeamList(data) {
@@ -308,13 +322,12 @@ function HTMLTeamList(data) {
 }
 
 function initApp() {
+
     getAllPokemon();
+
     localStorage.setItem('team', []);
 
     document.querySelector('.title').addEventListener('click', () => {
-       /* if() {
-
-        }*/
         openNav();
     });
 }
