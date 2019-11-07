@@ -201,6 +201,7 @@ function modalDetails(datas) {
     appearanceMenu.classList.add('tab')
     modalAbout.classList.add('menu-item', 'item-active')
     modalEvolution.classList.add('menu-item')
+    modalAppearance.classList.add('menu-item');
     modalMenu.classList.add('modal-menu')
     modalDetails.classList.add('modal-details');
     pokeModalHead.classList.add('poke-head');
@@ -225,19 +226,7 @@ function modalDetails(datas) {
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
     pokeImg.setAttribute('src', `https://pokeres.bastionbot.org/images/pokemon/${datas.id}.png`);
-    /**
-     * modalAbout - modalEvolution
-     * taille: datas.height
-     * poid: datas.weight
-     * abilities: datas.abilities -> map -> ability.name
-     * 
-     * 
-     * about => abilities | autre menu
-     * 
-     * Base Stats => stats->map e.base_stat -> stat.name
-     * 
-     * appearance => datas.sprites  faire tableau de correspondance, vérifier si null, afficher img du lien 
-     */
+  
     console.log(datas);
     /** PAGE ABOUT **/
     let pokeAbout = document.createElement('ul');
@@ -268,7 +257,7 @@ function modalDetails(datas) {
     datas.stats.map(e => {
         let itemList = document.createElement('li');
         itemList.innerHTML = `<span>${e.stat.name}</span> <p class="stat">${e.base_stat}</p>`;
-        
+    
         createHTML([
             itemList
         ], pokeStats)
@@ -282,12 +271,35 @@ function modalDetails(datas) {
 
     /** PAGE BASE APPAREANCE **/
 
+    let corrArray = [
+        'back_default',
+        'back_female',
+        'back_shiny',
+        'back_shiny_female',
+        'front_default',
+        'front_female',
+        'front_shiny', 
+        'front_shiny_female'
+    ]
+    
+    corrArray.map(imgName => {
+        let itemList = document.createElement('img');
+        if(datas.sprites[imgName] !== null) {
+            itemList.setAttribute('src', datas.sprites[imgName]);
+  
+            createHTML([
+                itemList
+            ], modalAppearance)
+        }
+       
+    });
     /** END PAGE BASE APPAREANCE **/
 
     // Gestion des events
     leaveModal.addEventListener('click', () => {
         modalDiv.remove();
     });
+
     addTeam.addEventListener('click', (e) => {
         
         if(!e.target.classList.contains('in-team')) {
@@ -327,6 +339,7 @@ function modalDetails(datas) {
         modalMenu,
         modalAbout,
         modalEvolution,
+        modalAppearance
     ], modalDetails)
     
     createHTML([
@@ -423,3 +436,4 @@ function initApp() {
 }
 
 initApp();
+
