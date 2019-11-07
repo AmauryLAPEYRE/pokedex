@@ -51,7 +51,6 @@ main {
 }
 body {
     font-family: 'Roboto', sans-serif;
-    overflow: -webkit-paged-y;
 }
 .title {
     height: 100px;
@@ -94,7 +93,21 @@ main .pokemon-card, .pokemon-container .pokemon-card {
 
 .fire {
     background: #fc6c6d;
-
+}
+.ground {
+    background: #E2BF65;
+}
+.fighting {
+    background:  #C22E28;
+}
+.psychic {
+    background: #D685AD;
+}
+.fairy {
+    background: #F95587; 
+}
+.electric {
+    background: #ffd76f;
 }
 .poison, .grass, .bug {
     background: #49d0b0;
@@ -229,8 +242,9 @@ main div li::first-letter {
 .modal-container img {
     display: block;
     margin: auto;
-    bottom: -35px;
+    bottom: -15px;
     position: relative;
+    width: 50%;
 }
 .modal-details {
     height: 85%;
@@ -337,3 +351,4 @@ main div li::first-letter {
     border-radius: 0%; 
 }
 }
+  
