@@ -82,7 +82,7 @@ body {
 .hamburger-menu {
     padding-right: 35px;
 }
-main .pokemon-card {
+main .pokemon-card, .pokemon-container .pokemon-card {
     width: 40%;
     padding: 15px;
     margin: 5px auto;
@@ -94,6 +94,7 @@ main .pokemon-card {
 
 .fire {
     background: #fc6c6d;
+
 }
 .poison, .grass, .bug {
     background: #49d0b0;
@@ -260,6 +261,46 @@ main div li::first-letter {
 .modal-menu a {
     color: lightgrey;
 }
+.team-list.activ{
+    position: fixed;
+    z-index: 99;
+    background: white;
+    width: 1500px;
+    height: 1500px;
+}
+.team-list {
+    display: flex!important;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.pokemon-container {
+    height: 90vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    max-width: 450px;
+}
+.pokemon-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+}
+.scale-in-center.activ {
+	animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+.test {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: transparent;
+    position: absolute;
+}
 @keyframes go_to_top {
     0% {
          top: 100vh;
@@ -268,5 +309,19 @@ main div li::first-letter {
          top: 0; 
     }
   }
-
+@keyframes scale-in-center {
+0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+    border-radius: 100% 
+    
+}
+100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    border-radius: 0%; 
+}
+}
   
