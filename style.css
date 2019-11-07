@@ -102,6 +102,10 @@ body {
     z-index: 500;
     right: 0;
 }
+.stat {
+    padding-left: 80px;
+    text-align: end;
+}
 main .pokemon-card, .pokemon-container .pokemon-card {
     width: 40%;
     padding: 15px;
@@ -111,16 +115,21 @@ main .pokemon-card, .pokemon-container .pokemon-card {
     position: relative;
     height: 95px;
 }
-.about-list {
-    height: 100px;
+.menu-item ul {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-top: 10px;
-    padding-left: 24px;
+    padding-top: 20px;
+    padding-left: 45px;
 }
-.about-list span {
+.menu-item ul li {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.menu-item span {
     color: lightgray;
+    width: 45px;
 }
 .fire {
     background: #EE8130;
