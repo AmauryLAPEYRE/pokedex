@@ -262,7 +262,7 @@ function modalDetails(datas) {
         let action =document.createElement('div');
         progressBar.classList.add('progress-bar');
         action.classList.add('action');
-        let percentToPixel = 150 * e.base_stat / 100;
+        let percentToPixel = 150 * e.base_stat / 150;
         action.style.width = `${percentToPixel}px`;
         if (e.base_stat > 50 ) {
             action.classList.add('green');
