@@ -256,7 +256,7 @@ function modalDetails(datas) {
 
     datas.stats.map(e => {
         let itemList = document.createElement('li');
-        itemList.innerHTML = `<span>${e.stat.name}</span> <p class="stat">${e.base_stat}</p>`;
+        itemList.innerHTML = `<span>${e.stat.name}</span> <p class="percent">${e.base_stat}</p>`;
     
         let progressBar = document.createElement('div');
         let action =document.createElement('div');
