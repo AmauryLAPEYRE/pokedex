@@ -247,9 +247,9 @@ function modalDetails(datas) {
 
     pokeAbout.classList.add('about-list');
 
-    pokeHeight.innerHTML = `<span>Height</span> ${datas.height}`;
-    pokeWeight.innerHTML = `<span>Weight</span>${datas.weight}`;
-    pokeAbilities.innerHTML = `<span>Abilities</span> ${datas.abilities.map(a => a.ability.name)}`;
+    pokeHeight.innerHTML = `<span>Height</span> <p class="stat">${datas.height}</p>`;
+    pokeWeight.innerHTML = `<span>Weight</span> <p class="stat">${datas.weight}</p>`;
+    pokeAbilities.innerHTML = `<span>Abilities</span> <p class="stat">${datas.abilities.map(a => a.ability.name)}</p>`;
    
     createHTML([
         pokeHeight,
@@ -267,7 +267,7 @@ function modalDetails(datas) {
 
     datas.stats.map(e => {
         let itemList = document.createElement('li');
-        itemList.innerHTML = `<span>${e.stat.name}</span> ${e.base_stat}`;
+        itemList.innerHTML = `<span>${e.stat.name}</span> <p class="stat">${e.base_stat}</p>`;
         
         createHTML([
             itemList
