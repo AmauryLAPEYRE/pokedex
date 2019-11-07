@@ -103,10 +103,11 @@ body {
     right: 0;
 }
 .stat {
-    padding-left: 80px;
+    padding-left: 60px;
     text-align: end;
     text-transform: capitalize;
     padding-right: 10px;
+    width: 30px;
 }
 .progress-bar { 
   width: 150px; 
@@ -122,6 +123,12 @@ body {
 }
 .action.green {
     background: #49d0b0;
+}
+.menu-item img {
+    width: initial!important;
+}
+.menu-item img:nth-last-child() {
+    margin: 0;  
 }
 main .pokemon-card, .pokemon-container .pokemon-card {
     width: 40%;
@@ -344,8 +351,8 @@ main div li::first-letter {
     display: none;
 }
 .item-active {
-    display: block;
-    height: 100%;
+    display: flex;
+    flex-flow: wrap;
 }
 .tab {
     text-decoration: none;
