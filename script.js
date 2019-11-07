@@ -16,6 +16,8 @@ function createHTML(elements, container) {
 const baseRequest = 'https://pokeapi.co/api/v2/pokemon/';
 let limit = 50;
 let offset = 0;
+let pageNum = 1;
+
 /*************/
 /** REQUESTS */
 /*************/
@@ -34,6 +36,7 @@ function searchPokemon() {
 }
 
 function getAllPokemon(limit, offset) {
+    console.log(`${baseRequest}?limit=${limit}&offset=${offset}`);
     fetch(`${baseRequest}?limit=${limit}&offset=${offset}`)
         .then( (response) => {
             response.json()
@@ -107,10 +110,6 @@ function createListTypes(data, name) {
         pokemonImage
     ], divImage);
 
-    divPokemon.appendChild(list);
-    divPokemon.appendChild(divImage);
-    divImage.appendChild(pokemonImage);
-
     data.types.map(i => {
         let types = document.createElement('li');
         list.parentElement.classList.add(i.type.name);
@@ -124,19 +123,25 @@ function createPokeCard(data) {
   
         let divPokemon = document.createElement('div');
         let name = document.createElement('h2');
-        //let imagePokemon = document.createElement('img');
 
         divPokemon.classList.add(items.name, "pokemon-card");
         name.innerHTML = items.name;
 
-        document.querySelector('main').appendChild(divPokemon);
-        divPokemon.appendChild(name);
+        createHTML([
+            divPokemon
+        ], document.querySelector('main'))
+
+        createHTML([
+            name
+        ], divPokemon)
 
         getPokemonByName(items.name);
 
         divPokemon.addEventListener('click', () => {
             getPokemonDetails(items.name);
         })
+
+        
     })
 }
 function switchTab() {
@@ -229,7 +234,6 @@ function modalDetails(datas) {
         } else {
             addTeam.classList.remove('in-team');
             unstoreTeam(datas.species.name);
-            console.log('==> unstore');
         }
         
     });
@@ -268,7 +272,9 @@ function modalDetails(datas) {
         evolutionMenu
     ], modalMenu)
 
-    document.querySelector('body').insertBefore(modalDiv, document.querySelector('header'));
+    document.querySelector('body')
+        .insertBefore(modalDiv, document.querySelector('header'));
+
     switchTab();
 }
 
@@ -289,10 +295,13 @@ function storeTeam(pokeName) {
 
 function unstoreTeam(pokeName) {
     let currentTeam = localStorage.getItem('team').split(',');
+    let pokeInTeam = document.querySelector(`.pokemon-container .${pokeName}`);
 
     currentTeam.splice(currentTeam.indexOf(pokeName), 1);
 
+    pokeInTeam.remove();
     localStorage.setItem('team', currentTeam);
+
 }
 
 function openNav() {
@@ -308,13 +317,13 @@ function openNav() {
 }
 
 function HTMLTeamList(data) {
-  //  console.log(data);debugger;
     let tmCard = document.createElement('div');
     let tmName = document.createElement('h2');
     let tmImg = document.createElement('img');
 
     data.types.map(e => tmCard.classList.add(e.type.name));
     tmCard.classList.add('pokemon-card');
+    tmCard.classList.add(data.species.name);
     tmName.innerHTML = data.name;
     tmImg.setAttribute('src', data.sprites.front_default);
 
@@ -329,6 +338,14 @@ function HTMLTeamList(data) {
 
 }
 
+function nextPage() {
+    
+    let newOffset = 50*pageNum;
+    pageNum = pageNum + 1;
+
+    getAllPokemon(limit, newOffset);
+}
+
 function initApp() {
 
     getAllPokemon();
@@ -340,13 +357,4 @@ function initApp() {
     });
 }
 
-
-function nextPage() {
-    let newOffset = offset + 50
-    getAllPokemon(limit, newOffset);
-    
-    
-}
 initApp();
-
-
