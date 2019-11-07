@@ -14,7 +14,8 @@ function createHTML(elements, container) {
 /** VARIABLES */
 /**************/
 const baseRequest = 'https://pokeapi.co/api/v2/pokemon/';
-
+let limit = 50;
+let offset = 0;
 /*************/
 /** REQUESTS */
 /*************/
@@ -32,8 +33,8 @@ function searchPokemon() {
     });
 }
 
-function getAllPokemon() {
-    fetch(`${baseRequest}?limit=100&offset=100`)
+function getAllPokemon(limit, offset) {
+    fetch(`${baseRequest}?limit=${limit}&offset=${offset}`)
         .then( (response) => {
             response.json()
                 .then((data) => { 
@@ -340,7 +341,12 @@ function initApp() {
 }
 
 
-
+function nextPage() {
+    let newOffset = offset + 50
+    getAllPokemon(limit, newOffset);
+    
+    
+}
 initApp();
 
 
