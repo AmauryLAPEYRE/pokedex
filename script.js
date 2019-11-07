@@ -33,7 +33,7 @@ function searchPokemon() {
 }
 
 function getAllPokemon() {
-    fetch(baseRequest)
+    fetch(`${baseRequest}?limit=100&offset=100`)
         .then( (response) => {
             response.json()
                 .then((data) => { 
@@ -156,7 +156,12 @@ function switchTab() {
 1}
 
 function modalDetails(datas) {
-
+    /**
+     * taille: datas.height
+     * poid: datas.weight
+     * abilities: datas.abilities -> map -> ability.name
+     */
+    console.log(datas);
     // Création des éléments
     let modalDiv = document.createElement('div');
     let modalDetails = document.createElement('div');
@@ -209,7 +214,7 @@ function modalDetails(datas) {
     modalEvolution.id = 'item-2';
     pokeName.innerHTML = datas.species.name;
     pokeId.innerHTML = `#${datas.id}`;
-    pokeImg.setAttribute('src', datas.sprites.front_default);
+    pokeImg.setAttribute('src', `https://pokeres.bastionbot.org/images/pokemon/${datas.id}.png`);
 
     // Gestion des events
     leaveModal.addEventListener('click', () => {
