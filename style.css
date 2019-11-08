@@ -43,8 +43,11 @@ table {
 }
 
 main {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
     width: 100vw;
     max-width: 450px;
     margin: auto;
@@ -55,11 +58,17 @@ body {
 }
 .title {
     height: 100px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     max-width: 450px;
     margin: auto;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .title h1{
     font-size: 1.5em;
@@ -77,15 +86,21 @@ body {
     width: 250px;
     top: -82px;
     right: -85px;
-    filter: opacity(.15) drop-shadow(0 0 0 grey);
+    -webkit-filter: opacity(.15) drop-shadow(0 0 0 grey);
+            filter: opacity(.15) drop-shadow(0 0 0 grey);
 }
 .pokemon-card:active {
-    transform: scale(1.02);
+    -webkit-transform: scale(1.02);
+        -ms-transform: scale(1.02);
+            transform: scale(1.02);
 }
 .pokeball.in-team {
     background-image: url(public/full_pokeball.png);
-    animation: wobble 1s linear 100;
-    transform-origin: 50% 100%;
+    -webkit-animation: wobble 1s linear 100;
+            animation: wobble 1s linear 100;
+    -webkit-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
     transform-box: fill-box;
     display: block;
     width: 25px;
@@ -144,15 +159,25 @@ main .pokemon-card, .pokemon-container .pokemon-card {
     height: 95px;
 }
 .menu-item ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     padding-top: 20px;
     padding-left: 45px;
 }
 .menu-item ul li {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     padding-bottom: 10px;
 }
 .menu-item span {
@@ -234,9 +259,15 @@ main .pokemon-card::after{
 main div ul {
     list-style-type: none;
     padding: 0px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
-    justify-content: space-around;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
 }
 main div li {
     width: 84px;
@@ -244,9 +275,15 @@ main div li {
     background: rgba(255, 255, 255, 0.25);
     text-align: center;
     height: 28px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-bottom: 10px;
     margin-right: 5px;
 }
@@ -266,14 +303,20 @@ main div li::first-letter {
     height: 100%;
     position: fixed;
     z-index: 999;
-    animation-name: go_to_top;
-    animation-duration: 0.5s;
+    -webkit-animation-name: go_to_top;
+            animation-name: go_to_top;
+    -webkit-animation-duration: 0.5s;
+            animation-duration: 0.5s;
     font-family: 'Roboto', sans-serif;
 }
 .modal-head {
     padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
 .left-arrow {
     background-image: url(public/left-arrow.png);
@@ -301,15 +344,24 @@ main div li::first-letter {
 }
 .poke-head {
     padding: 20px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     color: white;
     font-weight: bold;
 }
 .poke-head div ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding-top: 15px;
-    flex-direction: row;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
 }
 .poke-head div ul li {
     color: white;
@@ -318,15 +370,25 @@ main div li::first-letter {
     background: rgba(255, 255, 255, 0.25);
     text-align: center;
     height: 28px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     margin-bottom: 10px;
     margin-right: 5px;
 }
 .poke-head span {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
 .modal-container img {
     display: block;
@@ -344,9 +406,14 @@ main div li::first-letter {
 }
 .modal-menu {
     height: 70px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
     border-bottom: 1px solid lightgrey;
     width: 85%;
     margin: auto;
@@ -355,8 +422,11 @@ main div li::first-letter {
     display: none;
 }
 .item-active {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-flow: wrap;
+    -ms-flex-flow: wrap;
+        flex-flow: wrap;
 }
 .tab {
     text-decoration: none;
@@ -378,18 +448,32 @@ main div li::first-letter {
     height: 1500px;
 }
 .team-list {
+    display: -webkit-box!important;
+    display: -ms-flexbox!important;
     display: flex!important;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 .pokemon-container {
     height: 90vh;
     width: 100vw;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100vw;
     max-width: 450px;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
 }
 .pokemon-title {
     font-size: 1.5em;
@@ -399,8 +483,11 @@ main div li::first-letter {
 
 .poke-add.in-team {
     background-image: url(public/full_pokeball.png); 
-    animation: wobble 1s linear 100;
-    transform-origin: 50% 100%;
+    -webkit-animation: wobble 1s linear 100; 
+            animation: wobble 1s linear 100;
+    -webkit-transform-origin: 50% 100%;
+        -ms-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
     transform-box: fill-box;
 }
 .more {
@@ -409,24 +496,35 @@ main div li::first-letter {
     margin-bottom: 30px;
 }
 .scale-in-center.activ {
-	animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	-webkit-animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: scale-in-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 .container-team {
     display: none;
 }
 .activ-container-team {
-    justify-content: center;
-    align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     height: 100vh;
     width: 100vw;
     background: transparent;
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 .ham {
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
+    -webkit-transition: -webkit-transform 400ms;
+    transition: -webkit-transform 400ms;
+    -o-transition: transform 400ms;
     transition: transform 400ms;
+    transition: transform 400ms, -webkit-transform 400ms;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -434,13 +532,19 @@ main div li::first-letter {
     width: 50px;
 }
 .hamRotate.active {
-    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
 }
 .hamRotate180.active {
-    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+            transform: rotate(180deg);
 }
 .line {
     fill:none;
+    -webkit-transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    -o-transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
     transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
     stroke:#000;
     stroke-width:5.5;
@@ -458,6 +562,14 @@ main div li::first-letter {
 .ham1.active .bottom {
     stroke-dashoffset: -138px;
 }
+@-webkit-keyframes go_to_top {
+    0% {
+         top: 100vh;
+    }
+    100% {
+         top: 0; 
+    }
+  }
 @keyframes go_to_top {
     0% {
          top: 100vh;
@@ -466,6 +578,21 @@ main div li::first-letter {
          top: 0; 
     }
   }
+@-webkit-keyframes scale-in-center {
+0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 1;
+    border-radius: 100% 
+    
+}
+100% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+    border-radius: 0%; 
+    }
+}
 @keyframes scale-in-center {
 0% {
     -webkit-transform: scale(0);
@@ -481,11 +608,23 @@ main div li::first-letter {
     border-radius: 0%; 
     }
 }
-@keyframes wobble {
+@-webkit-keyframes wobble {
     33% {
-      transform: rotate(-5deg)
+      -webkit-transform: rotate(-5deg);
+              transform: rotate(-5deg)
     }
     66% {
-      transform: rotate(5deg)
+      -webkit-transform: rotate(5deg);
+              transform: rotate(5deg)
+    }
+}
+@keyframes wobble {
+    33% {
+      -webkit-transform: rotate(-5deg);
+              transform: rotate(-5deg)
+    }
+    66% {
+      -webkit-transform: rotate(5deg);
+              transform: rotate(5deg)
     }
 }
